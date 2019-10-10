@@ -1,6 +1,8 @@
 <template>
     <div id="header">
-  <router-link :to="{path:'/swx'}">点击去child1</router-link>
+  <router-link :to="{path:'/swx'}">点击去swx</router-link>
+      <router-link :to="{path:'/swx1'}">swx1</router-link>
+      <router-link :to="{path:'/child2'}">点击去child2</router-link>
     </div>
 </template>
 
