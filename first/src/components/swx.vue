@@ -1,6 +1,6 @@
 <template>
     <fieldset>
-      <leglend><h2>这是child1组件</h2></leglend>
+      <legend><h2>这是child1组件</h2></legend>
       <p>何凯凯是个大笨蛋</p>
     </fieldset>
 </template>

@@ -1,14 +1,16 @@
 
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <Pro></Pro>
     <router-view/>
   </div>
 </template>
 
 <script>
+import Pro from "./components/Pro";
 export default {
-  name: 'App'
+  name: 'App',
+  components: {Pro}
 }
 </script>
 
