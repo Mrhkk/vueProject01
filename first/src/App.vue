@@ -1,16 +1,17 @@
 
 <template>
   <div id="app">
-    <Pro></Pro>
+    <City></City>
     <router-view/>
   </div>
 </template>
 
 <script>
-import Pro from "./components/Pro";
+
+import City from "./components/City";
 export default {
   name: 'App',
-  components: {Pro}
+  components: {City}
 }
 </script>
 
