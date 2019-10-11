@@ -2,7 +2,6 @@
 <template>
   <div id="app">
     <City></City>
-    <router-view/>
   </div>
 </template>
 
