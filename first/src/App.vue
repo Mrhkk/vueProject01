@@ -21,4 +21,8 @@ export default {
     list-style: none;
     text-decoration: none;
   }
+  body,html{
+    width:23.44rem ;
+    height: 41.69rem;
+  }
 </style>
