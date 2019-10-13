@@ -1,4 +1,6 @@
 import axios from "axios";
+axios.defaults.withCredentials = true;
+
 //声明常量存储超时时间
 const TIME_OUT_MS=60*1000;
 //因为将来从后台拿到的数据可能无法直接使用或者使用起来不太方便，建议，可以在请求到数据之后对数据做加工，加工成符合自己需求的数据

@@ -1,28 +1,35 @@
 
 <template>
   <div id="app">
-    <City></City>
+   <router-view></router-view>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 
-import City from "./components/City";
+import "../node_modules/bootstrap/dist/css/bootstrap.css"
+import Footer from "./components/Footer";
+
 export default {
   name: 'App',
-  components: {City}
+  components: {Footer},
 }
 </script>
 
 <style>
+  @import "//at.alicdn.com/t/font_1452428_4by149x4xtx.css";
   *{
     padding:0;
     margin: 0;
     list-style: none;
     text-decoration: none;
+    font-family: "黑体";
+
   }
   body,html{
-    width:23.44rem ;
-    height: 41.69rem;
+    font-size: 16px;
+    background-color:#f5f5f5 ;
+    width: 100%;
   }
 </style>
