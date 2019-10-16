@@ -1,7 +1,7 @@
 <template>
-    <div id="footer">
+    <div id="footer" v-if="false">
       <van-tabbar v-model="active">
-        <van-tabbar-item>
+        <van-tabbar-item :to="{path:'/food',query:getMsg}">
           <span>饿了么</span>
           <img
             slot="icon"  slot-scope="props"
@@ -10,7 +10,7 @@
         </van-tabbar-item>
         <van-tabbar-item icon="search">搜索</van-tabbar-item>
         <van-tabbar-item icon="notes-o">订单</van-tabbar-item>
-     <van-tabbar-item icon="user-circle-o" :to="{path:'/profile'}">我的</van-tabbar-item>
+     <van-tabbar-item icon="user-circle-o" :to="{path:'/profile',query:getMsg}">我的</van-tabbar-item>
       </van-tabbar>
     </div>
 </template>
@@ -21,12 +21,18 @@
         name: "Footer",
       data() {
         return {
+          foot:false,
           active: 1,
           icon: {
             normal:require('../assets/e.jpg') ,
             choose: require('../assets/e1.png')
           }
         }
+      },
+      computed:{
+          getMsg(){
+            return this.$route.query
+          }
       }
     }
 </script>

@@ -6,7 +6,7 @@
           <span class="l_text_right">我的</span>
         </div>
         <router-link class="l_head_center" :to="{path:'/info'}">
-          <img src="../assets/header.jpg" alt="" class="l_img_head">
+          <img src="../assets/header.png" alt="" class="l_img_head">
           <div id="l_center_right">
             <p>登录/注册</p>
             <p class="l_cen_phone"><i class="iconfont icon-shouji"></i>暂无绑定手机号</p>
@@ -21,7 +21,7 @@
           <span>元</span>
           <p>我的余额</p>
         </router-link>
-        <router-link :to="{}">
+        <router-link :to="{path:'/benefit'}">
           <span class="l_text_o">3</span>
           <span>个</span>
           <p>我的优惠</p>

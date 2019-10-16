@@ -15,6 +15,26 @@ import Vipcard from  '../components/Vipcard'
 import Spassword from  '../components/Spassword'
 import Resetpassword from '../components/resetPassword'
 import Detailquestion from  '../components/DetailQuestion'
+import fdesc from  '../components/Fooddesc'
+import VipDescription from '../components/VipDescription'
+import UseCart from '../components/UseCart'
+import InvoiceRecord from '../components/InvoiceRecord'
+import SetUsername from '../components/SetUsername'
+import Address from '../components/Address'
+import Add from '../components/Add'
+import AddDetail from '../components/AddDetail'
+import ConfirmOrder from '../components/ConfirmOrder'
+import ChooseAddress from '../components/ChooseAddress'
+import AddAddress from '../components/AddAddress'
+import Benefit from '../components/Benefit'
+import HbDescription from '../components/HbDescription'
+import Load from '../components/Load'
+import Hbhistory from '../components/Hbhistory'
+import Exchange from '../components/Exchange'
+import Commend from '../components/Commend'
+import Coupon from '../components/Coupon'
+import Search from '../components/Search'
+
 export default new Router({
   routes: [
     {path:'/',redirect:'/city'},
@@ -31,6 +51,26 @@ export default new Router({
     {path:"/vipcard",component:Vipcard},
     {path:"/spassword",component:Spassword},
     {path:"/resetPassword",component:Resetpassword},
-    {path:"/detailquestion",component:Detailquestion}
+    {path:"/detailquestion",component:Detailquestion},
+    {path:"/fdesc",component:fdesc},
+    {path:'/vipDescription',component:VipDescription},
+    {path:'/useCart',component:UseCart},
+    {path:'/invoiceRecord',component:InvoiceRecord},
+    {path:'/setUsername',component:SetUsername},
+    {path:'/address',component:Address},
+    {path:'/add',component:Add},
+    {path:'/addDetail',component:AddDetail},
+    {path:'/confirmOrder',component:ConfirmOrder},
+    {path:'/chooseAddress',component:ChooseAddress},
+    {path:'/addAddress',component:AddAddress},
+    {path:"/benefit",component:Benefit},
+    {path:"/hbDescription",component:HbDescription},
+    {path:"/load",component:Load},
+    {path:"/hbhistory",component:Hbhistory},
+    {path:"/exchange",component:Exchange},
+    {path:"/commend",component:Commend},
+    {path:"/coupon",component:Coupon},
+    {path:"search",component:Search}
+
   ]
 })

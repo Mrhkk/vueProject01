@@ -10,7 +10,7 @@
 
           <van-swipe-item>
             <van-grid :column-num="4" icon-size="42">
-            <van-grid-item v-for="(v,i) in imgurlArr1" :key="i" :icon="'//fuss10.elemecdn.com/'+v.image_url" :text="v.title" />
+            <van-grid-item v-for="(v,i) in imgurlArr1" :key="i" :icon="'//fuss10.elemecdn.com/'+v.image_url" :text="v.title" :to="{path:'/fdesc',query:v}"/>
             </van-grid>
           </van-swipe-item>
 
@@ -206,7 +206,7 @@ this.foodArr=data;
   }
   .fee-distance span:nth-child(2){
     color:rgba(0,0,0,0.6);
-    margin-right: -1.9rem;
+    margin-right: -5.1rem;
   }
   .fee-distance span:nth-child(3){
     color:#3190e8 ;

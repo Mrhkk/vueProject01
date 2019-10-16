@@ -17,7 +17,7 @@
             <span>0</span>
             <span>分</span>
           </div>
-          <div class="btn_cash">积分兑换奖品</div>
+          <div class="btn_cash" @click="pclick">积分兑换奖品</div>
         </div>
       </div>
     </div>
@@ -27,12 +27,34 @@
       <p>最近30天无积分记录</p>
       <p class="l_foot_text">快去下单赚取大量积分吧</p>
     </div>
+    <van-dialog
+      v-model="show"
+      confirmButtonBackgroundColor="red"
+      show-confirm-button
+    >
+      <div class="divW">
+        <div class="centerDiv">
+          <van-icon name="warning-o" size="100px" color="#f8cb86"/>
+          <p class="title">快去下单赚取大量积分吧</p>
+        </div>
+      </div>
+    </van-dialog>
   </div>
 </template>
 
 <script>
   export default {
-    name: "Points"
+    name: "Points",
+    data(){
+      return{
+        show:false,
+      }
+    },
+    methods:{
+      pclick(){
+        this.show = true;
+  }
+    }
   }
 </script>
 
@@ -128,5 +150,20 @@
   .l_foot_text{
     font-size: .75rem;
     color: #999;
+  }
+  .centerDiv {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10px;
+    bottom: 0;
+    margin: auto;
+  }
+  .divW{
+    width: 100%;
+    height: 160px;
+    position: relative;
+    text-align: center;
+    font-size: 1rem;
   }
 </style>

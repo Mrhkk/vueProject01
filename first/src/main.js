@@ -10,6 +10,8 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 import { Rate } from 'vant';
 import { Tabbar, TabbarItem } from 'vant';
+import animate from 'animate.css';
+Vue.use(animate)
 
 Vue.use(Tabbar).use(TabbarItem);
 Vue.use(Rate);

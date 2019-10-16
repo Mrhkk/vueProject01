@@ -1,4 +1,3 @@
-
 <template>
   <div id="app">
    <router-view></router-view>
@@ -7,7 +6,6 @@
 </template>
 
 <script>
-
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import Footer from "./components/Footer";
 
@@ -19,6 +17,7 @@ export default {
 
 <style>
   @import "//at.alicdn.com/t/font_1452428_4by149x4xtx.css";
+  @import "//at.alicdn.com/t/font_1296443_s3aurqc132.css";
   *{
     padding:0;
     margin: 0;

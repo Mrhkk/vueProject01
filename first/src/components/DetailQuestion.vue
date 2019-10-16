@@ -7,7 +7,7 @@
         <span class="l_text_right">{{title}}</span>
       </div>
       <div>
-        <p>{{content}}</p>
+        <p class="p-size">{{content}}</p>
       </div>
 
     </div>
@@ -32,7 +32,6 @@
 
 <style scoped>
   @import "//at.alicdn.com/t/font_1296443_aq2gswhv2kw.css";
-
   #l_head_top{
     color: white;
     font-size:1.17rem;
@@ -52,6 +51,11 @@
     color: #fff;
   }
   .l_text_right{
-    font-weight: 700;
+    font-weight: 800;
+  }
+  .p-size{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: rgba(0,0,0,0.5);
   }
 </style>

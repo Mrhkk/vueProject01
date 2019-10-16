@@ -19,7 +19,7 @@
           </div>
         </li>
         <li>
-         <router-link :to="{}">
+         <router-link :to="{path:'/setUsername'}">
            <span>用户名</span>
            <i class="iconfont icon-youjiantou l_icon2"></i>
            <p class="l_phone">12345678</p>
@@ -27,14 +27,14 @@
          </router-link>
         </li>
       <li>
-        <router-link :to="{}">
+        <router-link :to="{path:'/address'}">
           <span>收货地址</span>
           <i class="iconfont icon-youjiantou l_icon2"></i>
           <p style="clear:both;"></p>
         </router-link>
       </li>
         <li id="l_num">账号绑定</li>
-      <li>
+      <li @click="isPhone=!isPhone">
         <router-link :to="{}">
           <i class="iconfont icon-shouji l_iconb"></i>
           <span>手机</span>
@@ -63,6 +63,13 @@
          </div>
        </div>
      </div>
+      <div class="l_alter1"v-if="isPhone">
+        <i class="iconfont icon-gantanhao"></i>
+        <p style="font-size: 1.03rem">请在手机APP中设置</p>
+        <div class="l_btn1">
+          <button @click="isPhone=!isPhone" class="btn btn-danger">确认</button>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -74,9 +81,10 @@
       data(){
           return{
             isShow:false,
+            isPhone:false,
            userInfo:{
               //初始图片
-             avatar:'http://www.sucaijishi.com/uploadfile/2014/0524/20140524012045970.jpg'
+             avatar:'http://elm.cangdu.org/img/default.jpg'
            }
           }
       },
@@ -267,4 +275,38 @@
   .hiddenInput{
     opacity: 0;
   }
+.l_alter1{
+  position: absolute;
+  width: 17.58rem;
+  background: white;
+  text-align: center;
+  font-size: 1.875rem;
+  color: #575757;
+  font-weight: 500;
+  top: 12.79rem;
+  left: 2.93rem;
+  z-index: 100;
+  border-radius: 5px;
+}
+.l_alter1 .icon-gantanhao{
+  color: #f8bb86;
+  font-size: 4.65rem;
+}
+.l_alter1 button{
+  width: 100%;
+  display: inline-block;
+  padding: .59rem 1.46rem;
+  border-radius: 5px;
+  font-size: 1.17rem;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-top: 26px;
+  background:#4cd964;
+  font-weight: 700;
+  border-color:#4cd964;
+}
+.l_alter1 button:nth-child(1){
+  margin-right: 0.5rem;
+}
+
 </style>

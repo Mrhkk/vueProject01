@@ -74,7 +74,6 @@
             if (this.huadong) {
               this.intype='text';
             }
-
           },
           login(){
               if(this.input1==""&&this.input2==""&&this.input3==""){

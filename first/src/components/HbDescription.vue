@@ -1,10 +1,10 @@
 <template>
   <div id="l_detail">
     <div id="l_head_top">
-      <router-link class="l_text_left" :to="{path:'/balance'}">
+      <router-link class="l_text_left" :to="{path:'/Benefit'}">
         <i class="iconfont icon-zuojiantou"></i>
       </router-link>
-      <span class="l_text_right">余额问题</span>
+      <span class="l_text_right">红包说明</span>
     </div>
     <ul>
       <li v-for="(v,i) in NewArr" :key="i">
@@ -16,26 +16,26 @@
 </template>
 
 <script>
-    export default {
-        name: "Detail",
-      data(){
-        return{
-          QandA:[],
-          NewArr:[]
-        }
-      },
-      created(){
-        this.myHttp.get("/v3/profile/explain",(data)=>{
-          console.log(data);
-          this.QandA = data.balanceContent.split("###");
-          for (let i = 1; i < this.QandA.length; i++) {
-            this.QandA[i] = this.QandA[i].replace(/(?<=[\u4e00-\u9fa5]+)\s/g, "？");
-            this.NewArr.push(this.QandA[i].split("？"));
-          }
-          console.log(this.NewArr);
-        });
+  export default {
+    name: "HbDescription",
+    data(){
+      return{
+        QandA:[],
+        NewArr:[],
       }
+    },
+    created(){
+      this.myHttp.get("/v3/profile/explain",(data)=>{
+         //console.log(data);
+        this.QandA = data.hongbaoContent.split("###");
+        for (let i = 1; i < this.QandA.length; i++) {
+          this.QandA[i] = this.QandA[i].replace(/(?<=[\u4e00-\u9fa5]+)\s/g, "？");
+          this.NewArr.push(this.QandA[i].split("？"));
+        }
+        //console.log(this.NewArr);
+      });
     }
+  }
 </script>
 
 <style scoped>
@@ -66,7 +66,6 @@
   ul{
     /*box-sizing: border-box;*/
     width: 100%;
-    height: 38.55rem;
     color: #666;
     font-size: 0.88rem;
     background: white;

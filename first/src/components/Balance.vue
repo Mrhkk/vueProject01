@@ -36,10 +36,6 @@
 </script>
 
 <style scoped>
-  @import "//at.alicdn.com/t/font_1296443_aq2gswhv2kw.css";
-  @import "//at.alicdn.com/t/font_1296443_qbe541wv2m.css";
-
-
   .l_header{
     background-color:#3190e8 ;
   }
@@ -76,9 +72,9 @@
     color: #666;
   }
   .l_cen_top a{
-    color: #3190e8;
-    float: right;
-  }
+      color: #3190e8;
+      float: right;
+    }
   .icon-wenhao{
     float: right;
     font-size: 1.1rem;
