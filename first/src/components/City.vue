@@ -4,7 +4,11 @@
       <p class="p1"><span>ele.me</span><span><router-link :to="{path:'/spassword'}" class="login">登录|注册</router-link></span></p>
       <p class="p2"><span>当前定位城市：</span><span>定位不准时，请在城市列表中选择</span></p>
       <hr>
-      <div class="p3"><i class="iconfont icon-jiankuohao right"></i><div class="clear"></div></div>
+      <div class="p3" @click="zhengzhou">
+        <span>郑州</span>
+        <i class="iconfont icon-jiankuohao right">
+        </i><div class="clear"></div>
+      </div>
     </div>
     <div class="swx1-two">
       <p class="p2">热门城市</p>
@@ -65,7 +69,10 @@
           console.log(data);
           this.cHotArr=data;
         })
-      }
+      },
+        zhengzhou(){
+          this.$router.push({path:'/choose',query:{name:'郑州'}})
+      },
     }
   }
 </script>
@@ -79,7 +86,7 @@
     display: flex;
     box-sizing: border-box;
     justify-content: space-between;
-    background-color: deepskyblue;
+    background-color: #3190e8;
     color: white;
     padding: 1rem 0.6rem;
   }
@@ -103,7 +110,7 @@
     width: 100%;
     text-align: center;
     font-size: 0.9rem;
-    color: blue;
+    color: #3190e8;
   }
   .p4span{
     box-sizing: border-box;
@@ -143,6 +150,13 @@ hr{
     float: right;
     color: rgba(0,0,0,0.3);
   }
+  .p3>span{
+    font-size: 1rem;
+    float: left;
+    color: #3190e8;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+  }
   .clear{
     clear: both;
   }
@@ -150,4 +164,5 @@ hr{
     padding:0 0.5rem;
     border-top: 1px solid #e4e4e4;
   }
+
 </style>

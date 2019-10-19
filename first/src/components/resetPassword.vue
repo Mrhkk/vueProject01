@@ -11,11 +11,11 @@
       <input type="text" placeholder="请确认密码" v-model="input4">
       <input type="text" placeholder="验证码" v-model="input5">
       <div class="p-div2">
-        <span class="p-img1"><img :src="yzm" alt=""></span>
         <div class="p-div3">
           <span>看不清</span>
           <span class="p-span1" @click="yanzhengma">换一张</span>
         </div>
+        <span class="p-img1"><img :src="yzm" alt=""></span>
       </div>
     </div>
     <button class="btn btn-success p-button" @click="login">确认修改</button>
@@ -123,34 +123,33 @@
 <style scoped>
   .p-div{
     width: 100%;
-    height:4rem;
+    height:3.2rem;
     background-color: #3190e8;
     padding: 1rem 1rem;
     box-sizing: border-box;
   }
   .p-img{
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
   }
   .p-span{
-    margin-left: 30%;
+    margin-left: 22%;
     color: white;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     font-weight: 600;
   }
   .p-div1{
-    margin-top: 2rem;
+    margin-top: 1rem;
     border-top: 0.04rem solid rgba(0,0,0,0.1);
     position: relative;
   }
   .p-div1 input{
     width: 100%;
-    height: 4rem;
     border: none;
-    padding: 0 1.2rem;
+    padding: 0.8rem 1.2rem;
     border-bottom: 0.04rem solid rgba(0,0,0,0.1);
     background-color: white;
-    font-size: 1.7rem;
+    font-size: 1.1rem;
     outline:none;
   }
   .p-div2{
@@ -160,23 +159,23 @@
     width: 13rem;
   }
   .p-img1{
-    width: 65%;
-    float: left;
+    width: 38%;
+    float: right;
   }
   .p-div3{
-    width: 35%;
+    width: 30%;
     float: right;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .p-span1{
     color: #3190e8;
    }
   .p-button{
-    width: 94%;
-    height: 4rem;
-    margin-left: 1.2rem;
-    font-size: 1.7rem;
-    margin-top: 3rem;
+    width: 90%;
+    margin-left:5%;
+    font-size: 1.3rem;
+    margin-top: 1.2rem;
+    background-color: #4cd964;
   }
   .centerDiv {
     position: absolute;

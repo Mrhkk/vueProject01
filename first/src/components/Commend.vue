@@ -1,7 +1,7 @@
 <template>
   <div class="commend">
     <div id="l_head_top">
-      <router-link class="l_text_left" :to="{path:'/profile'}">
+      <router-link class="l_text_left" :to="{path:'/benefit'}">
         <i class="iconfont icon-zuojiantou"></i>
       </router-link>
       <span class="l_text_right">推荐有奖</span>

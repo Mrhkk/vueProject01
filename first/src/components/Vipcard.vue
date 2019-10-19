@@ -2,7 +2,7 @@
     <div id="l_vipcard">
       <div id="l_head_top">
         <router-link class="l_text_left" :to="{path:'profile'}">
-          <i class="iconfont icon-right1"></i>
+          <i class="iconfont icon-zuojiankuohao"></i>
         </router-link>
         <span class="l_text_right">会员中心</span>
       </div>
@@ -41,7 +41,7 @@
         </li>
         <li>
           <p class="l_buy">1个月<span>￥20</span></p>
-          <p class="l_buy1">购买</p>
+          <router-link :to="{path:'/payment'}" class="l_buy1">购买</router-link>
           <p style="clear:both;"></p>
         </li>
         <li>
@@ -71,7 +71,6 @@
 </script>
 
 <style scoped>
-  /*@import "//at.alicdn.com/t/font_1296443_9pod8ehsni5.css";*/
 *{
   padding: 0;
   margin: 0;

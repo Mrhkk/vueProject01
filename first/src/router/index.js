@@ -34,6 +34,14 @@ import Exchange from '../components/Exchange'
 import Commend from '../components/Commend'
 import Coupon from '../components/Coupon'
 import Search from '../components/Search'
+import Order from '../components/Order'
+import Return from '../components/Return'
+import Payment from '../components/Payment'
+import ShopSafe from '../components/ShopSafe'
+import ShopDetail from '../components/ShopDetail'
+import Invoice from '../components/Invoice'
+import Remarks from '../components/Remarks'
+import FootDetail from '../components/FootDetail'
 
 export default new Router({
   routes: [
@@ -70,7 +78,16 @@ export default new Router({
     {path:"/exchange",component:Exchange},
     {path:"/commend",component:Commend},
     {path:"/coupon",component:Coupon},
-    {path:"search",component:Search}
+    {path:"/search",component:Search},
+    {path:"/order",component:Order},
+    {path:"/return",component:Return},
+    {path:"/payment",component:Payment},
+    {path:"/shopSafe",component:ShopSafe},
+    {path:"/shopDetail",component:ShopDetail},
+    {path:"/invoice",component:Invoice},
+    {path:"/remarks",component:Remarks},
+    {path:"/footDetail",component:FootDetail}
+
 
   ]
 })

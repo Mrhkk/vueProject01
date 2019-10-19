@@ -9,11 +9,11 @@
       <ul>
         <li>
           <span>联系人</span>
-          <input type="text" placeholder="你的名字" class="input1">
+          <input type="text" placeholder="你的名字" class="input1" v-model="name">
           <div class="l_radio">
-            <i class="iconfont icon-duiha" :class="{icon_hui:isShow,icon_green:isGreen}" @click="changeB()"></i>
+            <i class="iconfont icon-duiha" :class="isShow?'icon_green':'icon_hui'" @click="changeB()" v-model="sex"></i>
             <span>先生</span>
-            <i class="iconfont icon-duiha" :class="{icon_hui:isGreen,icon_green:isShow}" @click="changeG()"></i>
+            <i class="iconfont icon-duiha" :class="isGreen?'icon_green':'icon_hui'" @click="changeG()" v-model="sex"></i>
             <span>女士</span>
             <p style="clear:both;"></p>
           </div>
@@ -22,36 +22,36 @@
         <li>
           <span>联系电话</span>
           <i class="iconfont icon-hao"></i>
-          <input type="text" placeholder="你的手机号" class="input1 input2">
+          <input type="text" placeholder="你的手机号" class="input1 input2" v-model="phone">
           <div class="l_radio">
-            <input type="text" class="input1 input3" placeholder="备选电话">
+            <input type="text" class="input1 input3" placeholder="备选电话" v-model="phone1">
           </div>
           <p style="clear:both;"></p>
         </li>
         <li>
           <span>送餐地址</span>
           <router-link :to="{}" class="input1">
-            <input type="text" placeholder="小区/写字楼/学校等" class="input1 input3">
+            <input type="text" placeholder="小区/写字楼/学校等" class="input1 input3"  v-model="address">
           </router-link>
           <div class="l_radio">
-            <input type="text" class="input1 input3" placeholder="详细地址(如门牌号等)">
+            <input type="text" class="input1 input3" placeholder="详细地址(如门牌号等)" v-model="detailedAddress">
           </div>
           <p style="clear:both;"></p>
         </li>
         <li>
           <span>标签</span>
-          <input type="text" placeholder="无/家/学校/公司" class="input1">
+          <input type="text" placeholder="无/家/学校/公司" class="input1" v-model="label">
           <p style="clear:both;"></p>
         </li>
       </ul>
         <div class="l_bottom">
-          <button @click="GetTrue()" class="btn btn-danger l_btn_dan">确定</button>
+          <button @click="GetInfors" class="btn btn-danger l_btn_dan">确定</button>
         </div>
       <div class="l_alter"v-if="isShow1">
         <i class="iconfont icon-gantanhao"></i>
         <p style="font-size: 1.03rem">请输入姓名</p>
         <div class="l_btn1">
-          <button @click="GetWait()" class="btn btn-danger l_btn_dan">确认</button>
+          <button @click="isShow1=!isShow1" class="btn btn-danger l_btn_dan">确认</button>
         </div>
       </div>
     </div>
@@ -62,26 +62,66 @@
         name: "AddAddress",
       data(){
           return {
-            isShow:false,
-            isGreen:true,
-            isShow1:false
+            isShow:true,
+            isGreen:false,
+            isShow1:false,
+            //名字
+            name:"",
+            //电话
+            phone:"",
+            //备选电话
+            phone1:"",
+            //地址
+            detailedAddress:"",
+             //详细地址
+            address:"",
+            //标签
+            label:"",
+            //性别
+            sex:"先生",
+            dataArr:[]
           }
       },
+      created(){
+          if(JSON.parse(localStorage.getItem("dataArr"))){
+            this.dataArr=JSON.parse(localStorage.getItem("dataArr"));
+          }
+        // this.dataArr=;
+        // console.log();
+      },
       methods:{
+          //先生
         changeB(){
-          this.isShow = false;
-          this.isGreen = true;
-        },
-        changeG(){
           this.isShow = true;
           this.isGreen = false;
+          this.sex = "先生";
         },
-        GetTrue(){
-          this.isShow1 = true;
+        //女士
+        changeG(){
+          this.isShow = false;
+          this.isGreen = true;
+          this.sex = "女士";
         },
-        GetWait(){
-          this.isShow1 = false;
-        },
+        GetInfors(){
+          let reg1=/^1[356789]\d{9}$/;
+          if (this.name!="" && reg1.test(this.phone)  && this.detailedAddress !=""  && this.label != "" && this.sex != ""){
+            if (this.label == "无"){
+              console.log({name:this.name,phone:this.phone,address:this.address,sex:this.sex,label:this.label})
+
+              if(!JSON.parse(localStorage.getItem("dataArr"))){
+              this.dataArr.push({name:this.name,phone:this.phone,address:this.address,sex:this.sex,label:this.label})
+              }else {
+                this.dataArr=JSON.parse(localStorage.getItem("dataArr"));
+                this.dataArr.push({name:this.name,phone:this.phone,address:this.address,sex:this.sex,label:this.label})
+              }
+              localStorage.setItem("dataArr",JSON.stringify(this.dataArr));
+              this.$router.push({path:"/chooseAddress",query:this.dataArr});
+            }
+          }else {
+            this.isShow1 = true;
+          }
+        }
+
       }
     }
 </script>
@@ -189,7 +229,6 @@
     letter-spacing: 1px;
     background:#4cd964;
     border-color:#4cd964;
-    font-weight: 700;
   }
   .l_alter button:nth-child(1){
     margin-right: 0.5rem;
@@ -203,10 +242,13 @@
     background: #4cd964;
     border: none;
     margin: 0;
-    line-height: 2.5rem;
+    line-height: 1.5rem;
   }
   .l_bottom{
     box-sizing: border-box;
     margin: 0.88rem 1.03rem 0 1.03rem;
+  }
+  .l_bottom button{
+    line-height: 2.5rem;
   }
 </style>

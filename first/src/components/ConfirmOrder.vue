@@ -10,7 +10,7 @@
       <div style="height: 3.375rem"></div>
       <ul>
         <li>
-          <router-link :to="{path:'/chooseAddress'}" class="l_link_add">
+          <router-link :to="{path:'/chooseAddress',query:{bool:true}}" class="l_link_add">
             <i class="iconfont icon-ditu"></i>
             <span>请添加一个收货地址</span>
             <i class="iconfont icon-aright"></i>
@@ -70,16 +70,16 @@
           <p style="clear:both;"></p>
         </li>
         <li>
-          <router-link class="l_li_pay" :to="{}">
+          <router-link class="l_li_pay" :to="{path:'/remarks'}">
             <span class="l_li_left">订单备注</span>
             <i class="iconfont icon-aright"></i>
             <span class="l_li_right">口味、偏好等</span>
             <p style="clear: both"></p>
           </router-link>
-          <router-link class="l_li_pay" to="{}">
+          <router-link class="l_li_pay" :to="{path:'/invoice'}">
             <span class="l_li_left">发票抬头</span>
             <i class="iconfont icon-aright"></i>
-            <span class="l_li_right">不需要开发票</span>
+            <span class="l_li_right">{{msg}}</span>
             <p style="clear: both"></p>
           </router-link>
         </li>
@@ -97,7 +97,7 @@
           <button @click="GetWait()" class="btn btn-danger l_btn_dan">确认</button>
         </div>
       </div>
-      <transition enter-activity-class="animated bounceInUp" leave-active-class="animated bounceInDown">
+      <transition enter-activity-class="animated sildeInUp" leave-active-class="animated sildeOutDown">
       <div class="l_method" v-if="isPay" @click="isPay=!isPay">
         <div class="l_method_info">
           <p class="l_method_top">支付方式</p>
@@ -121,7 +121,8 @@
       data(){
           return{
             isShow:false,
-            isPay:false
+            isPay:false,
+            msg:"不需要开发票"
           }
       },
       methods:{
@@ -132,6 +133,12 @@
           this.isShow = false;
         },
 
+      },
+      created(){
+          this.msg = this.$route.query.msg;
+          this.myHttp.get("/shopping/restaurant/1",(data)=>{
+
+          });
       }
     }
 </script>
@@ -141,9 +148,11 @@
  #l_confirmOrder{
     position: relative;
   }
+
 .l_methed_op{
    display: block;
 }
+
   #l_head_top{
     width: 100%;
     color: white;

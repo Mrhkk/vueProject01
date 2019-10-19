@@ -1,5 +1,5 @@
 <template>
-    <div id="footer" v-if="false">
+    <div id="footer" v-if="true">
       <van-tabbar v-model="active">
         <van-tabbar-item :to="{path:'/food',query:getMsg}">
           <span>饿了么</span>
@@ -8,8 +8,8 @@
             :src="props.active ? icon.normal : icon.choose"
           >
         </van-tabbar-item>
-        <van-tabbar-item icon="search">搜索</van-tabbar-item>
-        <van-tabbar-item icon="notes-o">订单</van-tabbar-item>
+        <van-tabbar-item icon="search" :to="{path:'/search'}">搜索</van-tabbar-item>
+        <van-tabbar-item icon="notes-o" :to="{path:'/order'}">订单</van-tabbar-item>
      <van-tabbar-item icon="user-circle-o" :to="{path:'/profile',query:getMsg}">我的</van-tabbar-item>
       </van-tabbar>
     </div>
@@ -22,7 +22,7 @@
       data() {
         return {
           foot:false,
-          active: 1,
+          active: 0,
           icon: {
             normal:require('../assets/e.jpg') ,
             choose: require('../assets/e1.png')
@@ -42,5 +42,8 @@
 #footer{
   width: 100%;
   height: 18%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
 </style>

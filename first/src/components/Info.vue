@@ -3,7 +3,7 @@
     <div id="l_info">
       <div id="l_head_top">
         <router-link class="l_text_left" :to="{path: 'profile'}">
-          <i class="iconfont icon-zuojiantou"></i>
+          <i class="iconfont icon-zuojiantou" @click="headPhoto"></i>
         </router-link>
         <span class="l_text_right">帐户信息</span>
       </div>
@@ -22,7 +22,7 @@
          <router-link :to="{path:'/setUsername'}">
            <span>用户名</span>
            <i class="iconfont icon-youjiantou l_icon2"></i>
-           <p class="l_phone">12345678</p>
+           <p class="l_phone">{{dengname}}</p>
            <p style="clear:both;"></p>
          </router-link>
         </li>
@@ -47,7 +47,7 @@
         <router-link :to="{}">
           <span>登录密码</span>
           <i class="iconfont icon-youjiantou l_icon2"></i>
-          <p class="l_phone">修改</p>
+          <router-link :to="{path:'/resetpassword'}" class="l_phone">修改</router-link>
           <p style="clear:both;"></p>
         </router-link>
       </li>
@@ -82,11 +82,17 @@
           return{
             isShow:false,
             isPhone:false,
+            //用户名
+            dengname:"",
            userInfo:{
               //初始图片
-             avatar:'http://elm.cangdu.org/img/default.jpg'
+             avatar:'http://elm.cangdu.org/img/default.jpg',
            }
           }
+      },
+      created(){
+        this.dengname=this.$store.state.myVuex.deng_data;
+        this.userInfo.avatar=this.$store.state.myVuex.photo_data;
       },
       methods:{
           getCancel(){
@@ -110,8 +116,17 @@
             reader.onload = (data) =>{
               let res = data.target || data.srcElement;
               this.userInfo.avatar = res.result;
+              //console.log(res);
+
             }
             reader.readAsDataURL(file);
+        },
+        headPhoto(){
+          //存头像
+          this.$store.commit("chuanphoto",this.userInfo.avatar );
+          //跳转
+            this.$router.push({path:"/profile"});
+
         }
       }
     }

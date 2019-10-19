@@ -1,7 +1,6 @@
 <template>
   <div id="app">
    <router-view></router-view>
-    <Footer></Footer>
   </div>
 </template>
 
@@ -11,13 +10,13 @@ import Footer from "./components/Footer";
 
 export default {
   name: 'App',
-  components: {Footer},
+  // components: {Footer},
 }
 </script>
 
 <style>
-  @import "//at.alicdn.com/t/font_1452428_4by149x4xtx.css";
-  @import "//at.alicdn.com/t/font_1296443_s3aurqc132.css";
+  @import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";
+  @import "//at.alicdn.com/t/font_1296443_mvbvtwm32f.css";
   *{
     padding:0;
     margin: 0;

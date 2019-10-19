@@ -2,8 +2,16 @@
     <div id="food">
       <div id="head_top">
         <span><i class=" iconfont icon-suosou charB"></i></span>
-        <span>{{addressName.address}}</span>
-        <span><i class=" iconfont icon-rentou charB1"></i></span>
+        <router-link :to="{path:'/city'}">
+          <span class="span2">{{cityn?'郑州':addressName.address}}</span>
+        </router-link>
+        <router-link :to="{path:'/profile'}" >
+          <span v-if="foodLoad"><i class=" iconfont icon-rentou charB1"></i></span>
+        </router-link>
+        <router-link :to="{path:'/spassword'}">
+          <span class="charB2" v-if="!foodLoad">登录/注册</span>
+          <div class="clear"></div>
+        </router-link>
       </div>
 
         <van-swipe :autoplay="3000" indicator-color="#1989fa">
@@ -57,13 +65,15 @@
    </div>
  </router-link>
 </ul>
-
+    <Footer></Footer>
     </div>
 </template>
 
 <script>
+    import Footer from "./Footer";
     export default {
         name: "Food",
+      components: {Footer},
       data(){
          return{
            addressName:"",
@@ -71,6 +81,8 @@
            imgurlArr1:[],
            imgurlArr2:[],
            foodArr:[],
+           foodLoad:false,
+           cityn:''
          }
       },
 created(){
@@ -79,22 +91,25 @@ created(){
     this.imgurlArr=data;
     for (let i=0;i<this.imgurlArr.length/2;i++){
       this.imgurlArr1.push(this.imgurlArr[i]);
-
     }
     for (let i=this.imgurlArr.length/2;i<this.imgurlArr.length;i++){
       this.imgurlArr2.push(this.imgurlArr[i]);
     }
   });
   this.myHttp.get("/shopping/restaurants?latitude=31.22967&longitude=121.4762",(data)=> {
-this.foodArr=data;
-    console.log(data);
-  })
-}
+      this.foodArr=data;
+    //console.log(data);
+  });
+  this.cityn=this.$store.state.myVuex.deng_data;
+  if(this.cityn!=""){
+    this.foodLoad=!false;
+  }
+},
+
     }
 </script>
 
 <style scoped>
-  @import '//at.alicdn.com/t/font_1452428_61toiezrg77.css';
   #food{
     padding:2.8rem 0 ;
   }
@@ -108,11 +123,17 @@ this.foodArr=data;
     height: 2.8rem;
     padding: 0.5rem 1rem;
   }
-  .charB,.charB1{
+  .charB{
     color: white;
     font-size: 1.5rem;
   }
-  #head_top span:nth-child(2){
+  .charB1, .charB2{
+    color: white;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    float: right;
+  }
+  .span2{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -248,4 +269,8 @@ this.foodArr=data;
     margin-right: 0.5rem;
     margin-left: 0.1rem;
   }
+  .clear{
+    clear: both;
+  }
+
 </style>

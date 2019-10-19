@@ -11,11 +11,11 @@
         <i class="iconfont icon-huadonganniux p-i" v-if="huadong" @click="openpassword"></i>
         <i class="iconfont icon-huadonganniuyes p-i" v-else @click="clockpassword"></i>
         <div class="p-div2">
-          <span class="p-img1"><img :src="yzm" alt=""></span>
           <div class="p-div3">
             <span>看不清</span>
             <span class="p-span1" @click="yanzheng">换一张</span>
           </div>
+          <span class="p-img1"><img :src="yzm" alt=""></span>
         </div>
       </div>
       <p class="p-p">温馨提示：未注册过的账户，登录时将自动注册</p>
@@ -105,6 +105,8 @@
                   console.log(data);
                  if (data.username){
                    //配置路由跳转个人中心页面
+                   this.$store.commit("deng",this.input1);
+                   this.$router.push({path:'/profile'});
                  }else{
                    this.show = true;
                    this.showZi="密码错误";
@@ -123,80 +125,79 @@
   @import "//at.alicdn.com/t/font_1452428_atnm2dcb2u4.css";
 .p-div{
   width: 100%;
-  height:4rem;
+  height:3.2rem;
   background-color: #3190e8;
   padding: 1rem 1rem;
   box-sizing: border-box;
 }
   .p-img{
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
   }
   .p-span{
     margin-left: 20%;
     color: white;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     font-weight: 600;
   }
   .p-div1{
-    margin-top: 2rem;
+    margin-top: 1rem;
     border-top: 0.04rem solid rgba(0,0,0,0.1);
     position: relative;
   }
   .p-div1 input{
     width: 100%;
-    height: 4rem;
     border: none;
     padding: 0 1.2rem;
     border-bottom: 0.04rem solid rgba(0,0,0,0.1);
     background-color: white;
-    font-size: 1.7rem;
+    font-size: 1.1rem;
     outline:none;
+    line-height: 2.8rem;
   }
   .p-i{
     font-size: 2.5rem;
     position: absolute;
-    top:4.3rem;
+    top:2.5rem;
     right: 2rem;
   }
   .p-p{
     color: red;
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding-left:1.2rem;
-    padding-top: 1.5rem;
+    padding-top: 0.8rem;
   }
   .p-p1{
     color: red;
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding-left:1.2rem;
   }
   .p-button{
     width: 90%;
-    height: 4rem;
-    margin-left: 1.2rem;
-    font-size: 1.7rem;
+    margin-left: 5%;
+    font-size: 1.2rem;
+    background-color: #4cd964;
   }
   .reset{
     display: block;
     text-align: right;
-    padding-right: 1.2rem;
-    margin-top: 2rem;
+    padding-right: 5%;
+    margin-top: 1.2rem;
     color: #3b95e9;
   }
   .p-div2{
     position: absolute;
     bottom: 0rem;
     right: 1.2rem;
-    width: 13rem;
   }
   .p-img1{
-    width: 65%;
-    float: left;
+    width: 50%;
+    float: right;
   }
   .p-div3{
-    width: 35%;
+    width: 30%;
     float: right;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
   }
   .p-span1{
     color: #3190e8;

@@ -51,9 +51,7 @@
           }
       },
       updated(){
-        let ze = /^[0-9]{10}$/;
-        let pass1= /^[0-9]{6}$/
-        if (ze.test(this.in1) && pass1.test(this.in2)){
+        if ( /^[0-9]{10}$/.test(this.in1) && /^[0-9]{6}$/.test(this.in2)){
           this.change=true;
         }else{
           this.change=!true;

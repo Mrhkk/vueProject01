@@ -6,9 +6,9 @@
           <span class="l_text_right">我的</span>
         </div>
         <router-link class="l_head_center" :to="{path:'/info'}">
-          <img src="../assets/header.png" alt="" class="l_img_head">
+          <img :src="photo" alt="" class="l_img_head">
           <div id="l_center_right">
-            <p>登录/注册</p>
+            <p>{{dengname}}</p>
             <p class="l_cen_phone"><i class="iconfont icon-shouji"></i>暂无绑定手机号</p>
           </div>
           <i class="iconfont icon-youjiantou l_center_img"></i>
@@ -22,12 +22,12 @@
           <p>我的余额</p>
         </router-link>
         <router-link :to="{path:'/benefit'}">
-          <span class="l_text_o">3</span>
+          <span class="l_text_o">{{gift_amount}}</span>
           <span>个</span>
           <p>我的优惠</p>
         </router-link>
         <router-link :to="{path:'/points'}">
-          <span class="l_text_g">0</span>
+          <span class="l_text_g">{{point}}</span>
           <span>分</span>
           <p>我的积分</p>
         </router-link>
@@ -37,7 +37,7 @@
         <li>
           <i class="iconfont icon-gengduo l_icon1"></i>
           <div>
-            <router-link :to="{}"><span>我的订单</span></router-link>
+            <router-link :to="{path:'/order'}"><span>我的订单</span></router-link>
             <i class="iconfont icon-youjiantou l_icon2"></i>
           </div>
           <p style="clear:both;"></p>
@@ -45,8 +45,10 @@
         <li>
           <i class="iconfont icon-scheng l_icon1 l_iconj"></i>
           <div>
+            <router-link :to="{path:'/return'}">
             <span>积分商城</span>
             <i class="iconfont icon-youjiantou l_icon2"></i>
+            </router-link>
           </div>
           <p style="clear:both;"></p>
         </li>
@@ -69,26 +71,56 @@
         <li>
           <i class="iconfont icon-eliaomo l_icon1 l_iconx"></i>
           <div>
-            <span>下载饿了么APP</span>
+            <router-link :to="{path:'/load'}">下载饿了么APP</router-link>
             <i class="iconfont icon-youjiantou l_icon2"></i>
           </div>
           <p style="clear:both;"></p>
         </li>
       </ul>
+      <Footer></Footer>
     </div>
 </template>
 
 <script>
+    import Footer from "./Footer";
     export default {
-        name: "Profile"
+        name: "Profile",
+        components: {Footer},
+      data(){
+          return{
+            dengname:"",
+            //avatar:'http://elm.cangdu.org/img/default.jpg',
+            gift_amount:"",
+            point:"",
+            photo:''
+          }
+      },
+      created(){
+          this.photo=this.$store.state.myVuex.photo_data;
+
+          //判断获取的name是否为空
+          if(this.$store.state.myVuex.deng_data==""){
+            //是的话
+            this.dengname="登录/注册";
+            this.gift_amount="0";
+            this.point="0";
+          }else{
+            //不是的话
+            this.dengname=this.$store.state.myVuex.deng_data;
+            //发起网络请求
+            this.myHttp.get("/v1/user",(data)=>{
+              //console.log(data);
+              //接收数据中的gift_amount字段
+              this.gift_amount=data.gift_amount;
+              //接收数据中的point字段
+              this.point=data.point;
+            });
+          }
+      }
     }
 </script>
 
 <style scoped>
-  @import "//at.alicdn.com/t/font_1452428_6puiuk1xdt.css";
-  @import "//at.alicdn.com/t/font_1296443_kvsmvyy068.css";
-  @import "//at.alicdn.com/t/font_1296443_chlsyrsqtz.css";
-  @import "//at.alicdn.com/t/font_1296443_908d7g77otu.css";
   @import "//at.alicdn.com/t/font_1296443_f8gtfz6l7e6.css";
   @import "//at.alicdn.com/t/font_1296443_6hxrdbnewyu.css";
   @import "//at.alicdn.com/t/font_1296443_xmcqct12r5q.css";

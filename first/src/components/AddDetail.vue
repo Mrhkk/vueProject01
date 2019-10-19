@@ -7,25 +7,53 @@
         <span class="l_text_right">搜索地址</span>
       </div>
       <div class="l_center">
-        <input type="text" placeholder="请输入小区/写字楼/学校等">
-        <button class="btn btn-danger l_btn">确认</button>
+        <input type="text" placeholder="请输入小区/写字楼/学校等" v-model="input">
+        <button class="btn btn-danger l_btn" @click="sure">确认</button>
         <p style="clear: both"></p>
       </div>
       <div class="l_pink">
         为了满足商家的送餐要求，建议您从列表中选择地址
       </div>
-      <hr style="margin: 1.13rem 0;border: 0.03rem solid #ccc">
-      <div class="l_bottom">
+      <div class="a-div" v-if="adiv">
+        <ul>
+          <li class="a-li" v-for="(v,i) in shuju" :key="i" @click="liClick(v.name)">
+            <p >{{v.name}}</p>
+            <p>{{v.address}}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="l_bottom" v-if="adiv1">
         <p>找不到地址?</p>
         <p>请尝试输入小区、写字楼或学校名</p>
         <p>消息地址(如门牌号)可稍后输入哦。</p>
       </div>
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "AddDetail"
+        name: "AddDetail",
+      data(){
+          return{
+            shuju:[],
+            adiv:false,
+            adiv1:false,
+            input:""
+          }
+      },
+      methods:{
+          sure(){
+              this.myHttp.get("/v1/pois?city_id=1&keyword="+this.input+"&type=search",(data)=>{
+                //console.log(data);
+                this.shuju=data;
+                this.adiv=!false;
+              });
+          },
+        liClick(v){
+          this.$router.push({path:"/add",query:{adit:v}});
+        }
+      }
     }
 </script>
 
@@ -89,5 +117,12 @@
   .l_bottom p{
     width: 100%;
     margin-bottom: .59rem;
+  }
+  .a-li{
+    border-top: 0.03rem solid rgba(0,0,0,0.3);
+    background-color: white;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    color: rgba(0,0,0,0.7);
   }
 </style>
