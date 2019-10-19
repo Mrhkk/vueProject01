@@ -6,6 +6,7 @@ export default ({
     deng_data:"",
     searchShop_data:[],
     photo_data:"",
+    ko:false,
   },
   //存储方法
   mutations: {
@@ -45,6 +46,9 @@ export default ({
     //单个删除地址
     deldizhi(state,res){
       state.dizhi_data.splice(state.dizhi_data.indexOf(res),1);
+    },
+    kok(state,res){
+      state.ko=res
     }
   },
 });

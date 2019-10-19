@@ -345,6 +345,7 @@
       }
     },
     created() {
+      this.$store.commit('kok',true);
       if (this.$route.query.id) {
         this.Id = this.$route.query.id;
         localStorage.setItem("sId",JSON.stringify(this.Id) );
@@ -365,6 +366,7 @@
 
       this.myHttp.get("/shopping/restaurant/" + this.Id, (data) => {
             this.headObj = data;
+        this.$store.commit('kok',false  );
           })
 
       if(localStorage.getItem("gCateArr")){

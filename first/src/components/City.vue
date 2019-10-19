@@ -42,6 +42,7 @@
       }
     },
     created(){
+      this.$store.commit('kok',true  );
       this.getCity();
       this.getHotCity();
     },
@@ -62,6 +63,7 @@
             arr.push(i);
           }
           this.cCharArr=arr.sort();
+          this.$store.commit('kok',false  );
         });
       },
       getHotCity(){

@@ -98,6 +98,7 @@
           }
       },
       created(){
+        this.$store.commit('kok',true);
           this.photo=this.$store.state.myVuex.photo_data;
           //判断获取的name是否为空
           if(this.$store.state.myVuex.deng_data==""){
@@ -110,6 +111,7 @@
             this.dengname=this.$store.state.myVuex.deng_data;
             //发起网络请求
             this.myHttp.get("/v1/user",(data)=>{
+              this.$store.commit('kok',false  );
               //console.log(data);
               //接收数据中的gift_amount字段
               this.gift_amount=data.gift_amount;
