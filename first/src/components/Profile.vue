@@ -2,7 +2,9 @@
     <div id="l_profile">
       <div class="l_header">
         <div id="l_head_top">
-          <i class="iconfont icon-zuojiantou l_text_left"></i>
+          <router-link :to="{path:'/food'}">
+            <i class="iconfont icon-zuojiantou l_text_left"></i>
+          </router-link>
           <span class="l_text_right">我的</span>
         </div>
         <router-link class="l_head_center" :to="{path:'/info'}">
@@ -97,7 +99,6 @@
       },
       created(){
           this.photo=this.$store.state.myVuex.photo_data;
-
           //判断获取的name是否为空
           if(this.$store.state.myVuex.deng_data==""){
             //是的话
@@ -116,7 +117,7 @@
               this.point=data.point;
             });
           }
-      }
+      },
     }
 </script>
 
@@ -140,10 +141,23 @@
     border-bottom: 1px solid rgba(255,255,255,0.3);
     box-sizing: border-box;
   }
-  .l_text_left{
+  #l_head_top a{
+    /*color: white;*/
+    /*font-size:1.17rem;*/
+    /*text-align: center;*/
+    /*position: relative;*/
+    /*padding: 0.3rem 0 0.35rem 0.2rem;*/
+    /*border-bottom: 1px solid rgba(255,255,255,0.3);*/
+    /*box-sizing: border-box;*/
     position: absolute;
     left: 0.5rem;
     top: 0.3rem;
+    color: white;
+  }
+  .l_text_left{
+    /*position: absolute;*/
+    /*left: 0.5rem;*/
+    /*top: 0.3rem;*/
   }
 .l_text_right{
   font-weight: 700;

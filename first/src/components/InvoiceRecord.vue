@@ -18,8 +18,9 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1296443_mvbvtwm32f.css";
   #l_incoiveRecord{
-    width:23‬rem ;
+    width:23rem;
     height:41rem ;
     background: white;
   }

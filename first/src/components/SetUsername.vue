@@ -2,7 +2,7 @@
     <div id="l_setUsername">
       <div id="l_head_top">
         <router-link class="l_text_left" :to="{path:'/info'}">
-          <i class="iconfont icon-right1"></i>
+          <i class="iconfont icon-zuojiankuohao"></i>
         </router-link>
         <span class="l_text_right">修改用户名</span>
       </div>
@@ -33,6 +33,7 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1296443_mvbvtwm32f.css";
   #l_head_top{
     color: white;
     font-size:1.17rem;

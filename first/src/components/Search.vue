@@ -132,6 +132,7 @@
 
 <style scoped>
   @import '//at.alicdn.com/t/font_1452428_ayycl45ybab.css';
+
   .l_header{
     height:2.86rem;
     background-color:#3190e8 ;

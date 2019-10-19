@@ -64,6 +64,7 @@
 
 <style scoped>
   @import "//at.alicdn.com/t/font_1296443_nj3zl13v1sf.css";
+  @import "//at.alicdn.com/t/font_1296443_mvbvtwm32f.css";
   *{
     padding: 0;
     margin: 0;

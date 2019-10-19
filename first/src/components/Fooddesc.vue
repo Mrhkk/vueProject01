@@ -30,17 +30,17 @@
       <!--排序-->
       <van-dropdown-item :title="'排序'">
         <ul class="item">
-          <li><i class="iconfont icon-paixu"></i>
+          <li @click="sortfood(0)"><i class="iconfont icon-paixu"></i>
             <p>智能排序</p></li>
-          <li><i class="iconfont icon-position-o"></i>
+          <li @click="sortfood(5)"><i class="iconfont icon-position-o"></i>
             <p>距离最近</p></li>
-          <li><i class="iconfont icon-huore"></i>
+          <li @click="sortfood(6)"><i class="iconfont icon-huore"></i>
             <p>销量最高</p></li>
-          <li><i class="iconfont icon-ziyuan"></i>
+          <li @click="sortfood(1)"><i class="iconfont icon-ziyuan"></i>
             <p>起送价最低</p></li>
-          <li><i class="iconfont icon-shijian"></i>
+          <li @click="sortfood(2)"><i class="iconfont icon-shijian"></i>
             <p>配送速度最快</p></li>
-          <li><i class="iconfont icon-xingxing"></i>
+          <li @click="sortfood(3)"><i class="iconfont icon-xingxing"></i>
             <p>评分最高</p></li>
         </ul>
       </van-dropdown-item>
@@ -55,23 +55,26 @@
         <div class="shopPro">
           <p>商家属性 (可以多选)</p>
           <div>
-              <span class="kind" @click="temp=!temp" :class="{'textcolor':temp}">
+             <span class="kind" @click="temp=!temp" :class="{'textcolor':temp}">
                 <i v-show="temp" class="iconfont icon-duihao"></i>
                 <span v-show="!temp" class="pz text">品</span>品牌商家</span>
-            <span class="kind" :class="{'textcolor':temp}">
-                <i v-show="!temp" class="iconfont icon-duihao"></i>
-                <span v-show="temp" class="bp text">保</span>外卖保</span>
-            <span class="kind" :class="{'textcolor':temp}">
-                <i v-show="!temp" class="iconfont icon-duihao"></i>
-                <span v-show="temp" class="pz text">准</span>准时达</span>
+            <span class="kind" @click="temp1=!temp1" :class="{'textcolor':temp1}">
+                <i v-show="temp1" class="iconfont icon-duihao"></i>
+                <span v-show="!temp1" class="bp text">保</span>外卖保</span>
+            <span class="kind" @click="temp2=!temp2" :class="{'textcolor':temp2}">
+                <i v-show="temp2" class="iconfont icon-duihao"></i>
+                <span v-show="!temp2" class="pz text">准</span>准时达</span>
           </div>
           <div>
-              <span class="kind" :class="{'textcolor':temp}"><i v-show="!temp" class="iconfont icon-duihao"></i>
-                <span v-show="temp" class="xf text">新</span>新店</span>
-            <span class="kind" :class="{'textcolor':temp}"><i v-show="!temp" class="iconfont icon-duihao"></i>
-                <span v-show="temp" class="xf text">付</span>在线支付</span>
-            <span class="kind" :class="{'textcolor':temp}"><i v-show="!temp" class="iconfont icon-duihao"></i>
-                <span v-show="temp" class="bp text">票</span>开发票</span>
+              <span class="kind" @click="temp3=!temp3" :class="{'textcolor':temp3}">
+                <i v-show="temp3" class="iconfont icon-duihao"></i>
+                <span v-show="!temp3" class="xf text">新</span>新店</span>
+            <span class="kind" @click="temp4=!temp4" :class="{'textcolor':temp4}">
+                  <i v-show="temp4" class="iconfont icon-duihao"></i>
+                <span v-show="!temp4" class="xf text">付</span>在线支付</span>
+            <span class="kind" @click="temp5=!temp5" :class="{'textcolor':temp5}">
+                  <i v-show="temp5" class="iconfont icon-duihao"></i>
+                <span v-show="!temp5" class="bp text">票</span>开发票</span>
           </div>
         </div>
         <div class="bottomBtn">
@@ -134,6 +137,13 @@
         value1: 0,
         value2: 'a',
         value3: 0,
+        temp1: false,
+        temp2: false,
+        temp3: false,
+        temp4: false,
+        temp5: false,
+        temp6: false,
+        temp7: false,
       }
     },
     created() {
@@ -173,14 +183,24 @@
       getfood(foodName, id) {
         this.title = foodName;
         this.myHttp.get(`/shopping/restaurants?latitude=${this.latitude}&longitude=${this.longitude}&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=${id}&order_by=null&delivery_mode[]=null`, data => {
-          this.foodArr=data;
+          this.foodArr = data;
         });
       },
+      //  排序的方法
+      sortfood(id) {
+        console.log(id);
+        this.myHttp.get(`/shopping/restaurants?latitude=${this.latitude}&longitude=${this.longitude}&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=${id}&delivery_mode[]=null`, data => {
+          this.foodArr = data;
+        });
+      }
     }
   }
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1281896_d0wkog4xks5.css";
+  @import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";
+
   .head {
     width: 100%;
     height: 3rem;
@@ -535,6 +555,7 @@
   .van-dropdown-menu {
     height: 2.3rem;
   }
+
   .pz {
     color: rgb(63, 189, 230);
     border-color: rgb(63, 189, 230) !important;
@@ -549,4 +570,40 @@
     color: rgb(255, 78, 0);
     border-color: rgb(255, 78, 0) !important;
   }
+
+  .iconfont {
+    margin-top: .5rem;
+  }
+
+  .icon-paixu {
+    color: rgb(59, 135, 200);
+  }
+
+  .icon-huore {
+    color: rgb(240, 115, 115);
+  }
+
+  .icon-ziyuan {
+    color: rgb(230, 182, 26);
+  }
+
+  .icon-shijian {
+    color: rgb(55, 199, 183);
+  }
+
+  .icon-position-o {
+    color: rgb(42, 155, 211);
+  }
+
+  .icon-xingxing {
+    color: rgb(235, 165, 59);
+  }
+
+  .item li {
+    display: flex;
+    justify-content: space-between;
+    padding-left: .5rem;
+    margin-top: .6rem;
+  }
+
 </style>

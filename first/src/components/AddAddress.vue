@@ -31,10 +31,10 @@
         <li>
           <span>送餐地址</span>
           <router-link :to="{}" class="input1">
-            <input type="text" placeholder="小区/写字楼/学校等" class="input1 input3"  v-model="address">
+            <input type="text" placeholder="小区/写字楼/学校等" class="input1 input3"  v-model="detailedAddress">
           </router-link>
           <div class="l_radio">
-            <input type="text" class="input1 input3" placeholder="详细地址(如门牌号等)" v-model="detailedAddress">
+            <input type="text" class="input1 input3" placeholder="详细地址(如门牌号等)" v-model="address">
           </div>
           <p style="clear:both;"></p>
         </li>
@@ -49,7 +49,7 @@
         </div>
       <div class="l_alter"v-if="isShow1">
         <i class="iconfont icon-gantanhao"></i>
-        <p style="font-size: 1.03rem">请输入姓名</p>
+        <p style="font-size: 1.03rem">{{msg}}</p>
         <div class="l_btn1">
           <button @click="isShow1=!isShow1" class="btn btn-danger l_btn_dan">确认</button>
         </div>
@@ -79,7 +79,8 @@
             label:"",
             //性别
             sex:"先生",
-            dataArr:[]
+            dataArr:[],
+            msg:"请输入姓名"
           }
       },
       created(){
@@ -105,7 +106,7 @@
         GetInfors(){
           let reg1=/^1[356789]\d{9}$/;
           if (this.name!="" && reg1.test(this.phone)  && this.detailedAddress !=""  && this.label != "" && this.sex != ""){
-            if (this.label == "无"){
+            if (this.label == "无" || this.label == "家" || this.label == "学校" || this.label == "公司"){
               console.log({name:this.name,phone:this.phone,address:this.address,sex:this.sex,label:this.label})
 
               if(!JSON.parse(localStorage.getItem("dataArr"))){
@@ -118,6 +119,18 @@
               this.$router.push({path:"/chooseAddress",query:this.dataArr});
             }
           }else {
+            if (this.name=="") {
+              this.msg="请输入姓名";
+            }else if (!reg1.test(this.phone)) {
+              this.msg="请输入手机号";
+            }else if (this.address == "") {
+              this.msg="请输入地址";
+            }else if (this.label=="") {
+              this.msg="请输入标签";
+            }else {
+              this.isShow1 = false;
+            }
+
             this.isShow1 = true;
           }
         }
@@ -127,6 +140,7 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1296443_mvbvtwm32f.css";
   *{
     margin: 0;
     padding: 0;

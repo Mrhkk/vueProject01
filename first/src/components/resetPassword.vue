@@ -121,6 +121,7 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";
   .p-div{
     width: 100%;
     height:3.2rem;

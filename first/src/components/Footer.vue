@@ -39,6 +39,7 @@
 
 <style scoped>
   @import "//at.alicdn.com/t/font_1452428_hekimx54jnn.css";
+  @import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";
 #footer{
   width: 100%;
   height: 18%;

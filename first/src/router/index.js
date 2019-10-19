@@ -68,7 +68,7 @@ export default new Router({
     {path:'/address',component:Address},
     {path:'/add',component:Add},
     {path:'/addDetail',component:AddDetail},
-    {path:'/confirmOrder',component:ConfirmOrder},
+    {path:'/confirmOrder',name:'corde',component:ConfirmOrder},
     {path:'/chooseAddress',component:ChooseAddress},
     {path:'/addAddress',component:AddAddress},
     {path:"/benefit",component:Benefit},

@@ -72,6 +72,7 @@
 
 <style scoped>
   @import "//at.alicdn.com/t/font_1296443_aq2gswhv2kw.css";
+  @import "//at.alicdn.com/t/font_1296443_mvbvtwm32f.css";
   /*头部*/
   #l_head_top{
     color: white;

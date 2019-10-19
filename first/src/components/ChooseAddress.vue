@@ -9,7 +9,7 @@
       <i class="iconfont icon-duiha" v-if="arr"></i>
       <ul>
         <li v-for="(v,i) in arr">
-         <router-link :to="{path:'/confirmOrder',query:arr}">
+         <router-link :to="{}" @click.native="btnXiu(v)">
            <div class="l_top">
              <span>{{v.name}}</span>
              <span>{{v.sex}}</span>
@@ -51,11 +51,18 @@
       },
       created(){
         this.arr=JSON.parse(localStorage.getItem("dataArr"));
+      },
+      methods:{
+        btnXiu(v){
+          localStorage.setItem("btnadd",v.address);
+          this.$router.push({path:'/confirmOrder'});
+        }
       }
     }
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1296443_mvbvtwm32f.css";
  #l_choose{
     width: 100%;
     height: 41.6875rem;

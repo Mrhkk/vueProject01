@@ -110,6 +110,7 @@ created(){
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";
   #food{
     padding:2.8rem 0 ;
   }

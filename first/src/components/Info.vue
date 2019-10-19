@@ -3,7 +3,7 @@
     <div id="l_info">
       <div id="l_head_top">
         <router-link class="l_text_left" :to="{path: 'profile'}">
-          <i class="iconfont icon-zuojiantou" @click="headPhoto"></i>
+          <i class="iconfont icon-zuojiankuohao" @click="headPhoto"></i>
         </router-link>
         <span class="l_text_right">帐户信息</span>
       </div>
@@ -102,7 +102,9 @@
             this.isShow = false;
         },
         LoginOut(){
+            this.$store.commit("deng1");
             this.$router.push({path:"/profile"});
+            this.$store.commit("chuanphoto1",this.userInfo.avatar );
         },
         //打开文件上传
         uploadHeadImg() {

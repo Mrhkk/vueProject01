@@ -1,18 +1,21 @@
 <template>
     <div id="l_confirmOrder">
       <div id="l_head_top">
-        <router-link class="l_text_left" :to="{path:'/address'}">
+        <router-link class="l_text_left" :to="{path:'/fan'}">
           <i class="iconfont icon-right1"></i>
         </router-link>
+        <router-link :to="{path:'/profile'}" >
+          <span v-if="foodLoad"><i class=" iconfont icon-rentou l_link"></i></span>
+        </router-link>
         <span class="l_text_right">确认订单</span>
-        <router-link :to="{}" class="l_link">登录/注册</router-link>
+        <router-link :to="{path:'/spassword'}" class="l_link" v-if="!foodLoad">登录/注册</router-link>
       </div>
       <div style="height: 3.375rem"></div>
       <ul>
         <li>
           <router-link :to="{path:'/chooseAddress',query:{bool:true}}" class="l_link_add">
             <i class="iconfont icon-ditu"></i>
-            <span>请添加一个收货地址</span>
+            <span>{{address_n}}</span>
             <i class="iconfont icon-aright"></i>
             <img src="../assets/x.png" class="l_img1">
           </router-link>
@@ -41,11 +44,11 @@
           <span>效果演示</span>
         </li>
         <li class="l_li_info">
-          <div class="l_li_i">
-            <span class="l_span_n">222</span>
+          <div class="l_li_i" v-for="(v,i) in gouwuArr">
+            <span class="l_span_n">{{v[0]}}</span>
             <div class="li_div_np">
-              <span class="l_span_num">x2</span>
-              <span class="l_span_p">￥20</span>
+              <span class="l_span_num">{{v[2]}}</span>
+              <span class="l_span_p">￥{{v[1]}}</span>
               <p style="clear: both"></p>
             </div>
             <p style="clear: both"></p>
@@ -62,10 +65,10 @@
           </div>
         </li>
         <li>
-          <p class="l_dd">订单￥7372</p>
+          <p class="l_dd">订单￥{{priceDate+6}}</p>
           <div class="l_pay2">
             <p class="l_p1">待支付</p>
-            <p>￥7123</p>
+            <p>￥{{priceDate+6}}</p>
           </div>
           <p style="clear:both;"></p>
         </li>
@@ -73,26 +76,26 @@
           <router-link class="l_li_pay" :to="{path:'/remarks'}">
             <span class="l_li_left">订单备注</span>
             <i class="iconfont icon-aright"></i>
-            <span class="l_li_right">口味、偏好等</span>
+            <span class="l_li_right">{{str}}</span>
             <p style="clear: both"></p>
           </router-link>
           <router-link class="l_li_pay" :to="{path:'/invoice'}">
             <span class="l_li_left">发票抬头</span>
             <i class="iconfont icon-aright"></i>
-            <span class="l_li_right">{{msg}}</span>
+            <span class="l_li_right">不需要发票抬头</span>
             <p style="clear: both"></p>
           </router-link>
         </li>
         <div style="margin: 5rem"></div>
       </ul>
       <div class="l_bottom">
-        <p class="l_bottom_p1">待支付￥7552</p>
+        <p class="l_bottom_p1">待支付￥{{priceDate+6}}</p>
         <p class="l_bottom_p2" @click="getCancel()">确认下单</p>
         <p style="clear:both;"></p>
       </div>
       <div class="l_alter"v-if="isShow">
         <i class="iconfont icon-gantanhao"></i>
-        <p style="font-size: 1.03rem">请添加一个收货地址</p>
+        <p style="font-size: 1.03rem">{{arr?arr.address:'请添加一个收货地址'}}</p>
         <div class="l_btn1">
           <button @click="GetWait()" class="btn btn-danger l_btn_dan">确认</button>
         </div>
@@ -122,7 +125,12 @@
           return{
             isShow:false,
             isPay:false,
-            msg:"不需要开发票"
+            msg:"不需要开发票",
+            gouwuArr:[],
+            priceDate:0,
+            arr:[],
+            str:'口味、偏好等',
+            foodLoad:false
           }
       },
       methods:{
@@ -134,16 +142,40 @@
         },
 
       },
+      computed:{
+          address_n(){
+            if (localStorage.getItem("btnadd")) {
+              return localStorage.getItem("btnadd");
+            }else {
+              return "请添加一个收货地址";
+            }
+          }
+      },
       created(){
+        this.arr=JSON.parse(localStorage.getItem("dataArr"));
           this.msg = this.$route.query.msg;
           this.myHttp.get("/shopping/restaurant/1",(data)=>{
 
           });
+          if (localStorage.getItem("gArr")){
+            this.gouwuArr=JSON.parse(localStorage.getItem("gArr"));
+            this.gouwuArr.forEach((v)=>{
+              this.priceDate+=v[2]*v[1];
+            })
+          }
+          this.str = this.$route.params.remark;
+          console.log(this.str);
+
+        this.cityn=this.$store.state.myVuex.deng_data;
+        if(this.cityn!=""){
+          this.foodLoad=!false;
+        }
       }
     }
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";
 
  #l_confirmOrder{
     position: relative;

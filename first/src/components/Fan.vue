@@ -36,9 +36,9 @@
         <span class="r-wz2">商家配送 / 分钟送达 / {{headObj.piecewise_agent_fee?headObj.piecewise_agent_fee.tips:''}}</span>
         <span class="r-wz3">{{headObj.promotion_info}}</span>
       </div>
-      <div class="huo">
+      <router-link :to="{path:'/shopDetail'}" class="huo">
         <i class="iconfont icon-jiankuohao jian"></i>
-      </div>
+      </router-link>
       </div>
     </div>
 
@@ -270,8 +270,11 @@
         // console.log(this.arr2);
           this.ballFlaf=!this.ballFlaf;
       }
+  localStorage.setItem("gArr",JSON.stringify(this.arr2) );
 
-    },
+  localStorage.setItem("gCateArr",JSON.stringify(this.cateArr));
+
+  },
       xJian(n,i){
        this.arr2[i][2]=n[2]-1;
        this.cateArr.forEach((v,j)=>{
@@ -342,16 +345,36 @@
       }
     },
     created() {
-      this.Id = this.$route.query.id;
+      if (this.$route.query.id) {
+        this.Id = this.$route.query.id;
+        localStorage.setItem("sId",JSON.stringify(this.Id) );
+      }else {
+        this.Id=JSON.parse(localStorage.getItem("sId"));
+      }
+
       // console.log(this.Id)
+      if(localStorage.getItem("gHeadObj")){
+        this.headObj=JSON.parse(localStorage.getItem("gHeadObj"))
+      }else {
+        this.myHttp.get("/shopping/restaurant/" +this.Id, (data) => {
+          this.headObj = data;
+          localStorage.setItem("gHeadObj",JSON.stringify(this.headObj) );
+
+        })
+      }
+
       this.myHttp.get("/shopping/restaurant/" + this.Id, (data) => {
-        this.headObj = data;
-        // console.log(data);
-      });
-      this.myHttp.get("/shopping/v2/menu?restaurant_id=" + this.Id, (data) => {
-        // console.log(data);
-        this.cateArr = data;
-      })
+            this.headObj = data;
+          })
+
+      if(localStorage.getItem("gCateArr")){
+        this.cateArr=JSON.parse(localStorage.getItem("gCateArr"))
+      }else {
+        this.myHttp.get("/shopping/v2/menu?restaurant_id=" + this.Id, (data) => {
+          // console.log(data);
+          this.cateArr = data;
+        })
+      }
       this.myHttp.get("/ugc/v2/restaurants/" + this.Id + "/ratings/scores", (data) => {
         // console.log(data);
         this.pJiaObj = data;
@@ -364,12 +387,19 @@
         // console.log(data);
         this.userPing = data;
       })
+
+    //  存储记录
+      if(localStorage.getItem("gArr")){
+        this.arr2=JSON.parse(localStorage.getItem("gArr"))
+      }
+
     }
   }
 </script>
 
 <style scoped>
   @import "//at.alicdn.com/t/font_1452428_34f7mceb29j.css";
+  /*@import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";*/
   html,body{
     width: 100%;
     height: 100%;
@@ -902,7 +932,7 @@ display: inline-block;
     right: 0;
     bottom: 0;
     background-color: #262626;
-    z-index: 200;
+    z-index: 10001;
     padding: 1.83rem;
     text-align: center;
     color: #fff;

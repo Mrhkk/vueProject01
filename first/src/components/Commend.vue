@@ -71,6 +71,7 @@
 </script>
 <style scoped>
   @import '//at.alicdn.com/t/font_1452428_44xotgrq5gr.css';
+  @import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";
   #l_head_top {
     color: white;
     font-size: 1.17rem;

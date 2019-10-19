@@ -17,6 +17,7 @@ export default {
 <style>
   @import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";
   @import "//at.alicdn.com/t/font_1296443_mvbvtwm32f.css";
+  @import "//at.alicdn.com/t/font_1452428_ayycl45ybab.css";
   *{
     padding:0;
     margin: 0;

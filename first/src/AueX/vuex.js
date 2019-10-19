@@ -18,6 +18,10 @@ export default ({
     deng(state, res) {
       state.deng_data = res;
     },
+    //修改用户名为空
+    deng1(state, res) {
+      state.deng_data = "";
+    },
     //存储search.vue的输入框里的值
     searchShop(state,res){
       state.searchShop_data.push(res);
@@ -33,6 +37,10 @@ export default ({
     //存储info里的头像
     chuanphoto(state,res){
       state.photo_data=res;
+    },
+    //头像初始值
+    chuanphoto1(state,res){
+      state.photo_data="http://elm.cangdu.org/img/default.jpg";
     },
     //单个删除地址
     deldizhi(state,res){

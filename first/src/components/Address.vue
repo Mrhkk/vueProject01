@@ -62,6 +62,7 @@
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1296443_mvbvtwm32f.css";
   #l_head_top{
     color: white;
     font-size:1.17rem;
