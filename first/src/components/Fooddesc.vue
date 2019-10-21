@@ -147,6 +147,7 @@
       }
     },
     created() {
+      this.$store.commit('kok',true  );
       this.title = this.$route.query.title
       this.myHttp.get("/shopping/restaurants?latitude=31.22967&longitude=121.4762", (data) => {
         this.foodArr = data;
@@ -154,6 +155,7 @@
       });
       //获取商铺分类的请求
       this.myHttp.get("/shopping/v2/restaurant/category", data => {
+        this.$store.commit('kok',false);
         console.log(data);
         for (var i = 0; i < data.length; i++) {
           this.items_info.push([])
@@ -184,6 +186,7 @@
         this.title = foodName;
         this.myHttp.get(`/shopping/restaurants?latitude=${this.latitude}&longitude=${this.longitude}&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=${id}&order_by=null&delivery_mode[]=null`, data => {
           this.foodArr = data;
+
         });
       },
       //  排序的方法
@@ -191,6 +194,7 @@
         console.log(id);
         this.myHttp.get(`/shopping/restaurants?latitude=${this.latitude}&longitude=${this.longitude}&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=${id}&delivery_mode[]=null`, data => {
           this.foodArr = data;
+
         });
       }
     }

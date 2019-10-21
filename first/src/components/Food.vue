@@ -86,6 +86,7 @@
          }
       },
 created(){
+  this.$store.commit('kok',true  );
   this.addressName=this.$route.query;
   this.myHttp.get("/v2/index_entry",(data)=> {
     this.imgurlArr=data;
@@ -99,6 +100,7 @@ created(){
   this.myHttp.get("/shopping/restaurants?latitude=31.22967&longitude=121.4762",(data)=> {
       this.foodArr=data;
     //console.log(data);
+    this.$store.commit('kok',false);
   });
   this.cityn=this.$store.state.myVuex.deng_data;
   if(this.cityn!=""){
